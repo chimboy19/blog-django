@@ -4,8 +4,8 @@ from .serializers import UserRegistrationSerializers , BlogSerializers,updateUse
 from .models import Blog
 from rest_framework import status
 from rest_framework .pagination import PageNumberPagination
-from rest_framework . permissions import IsAuthenticated
-from rest_framework . decorators import api_view ,permission_classes
+from rest_framework . permissions import IsAuthenticated,AllowAny
+from rest_framework . decorators import api_view ,permission_classes 
 
 
 
@@ -44,7 +44,9 @@ def create_blog(request):
         return Response(serializer.data)
     return Response(serializer.errors,status=status.HTTP_400_BAD_REQUEST)
 
+
 @api_view(["GET"])
+@permission_classes([AllowAny])
 def blog_list(request):
     blogs= Blog.objects.all()
     paginator=BlogListPagination()
@@ -89,3 +91,7 @@ def delete_blog(request,pk):
     return Response({"message": "blog has been delete successfully "}, status=status.HTTP_204_NO_CONTENT)
 
 
+@api_view(["GET"])
+def get_blog_categories(request):
+    categories = [choice[0] for choice in Blog.CATEGORY]
+    return Response(categories)

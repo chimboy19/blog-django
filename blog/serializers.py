@@ -39,16 +39,10 @@ class SimpleAuthorSerializers(serializers.ModelSerializer):
         fields=['id','first_name','username','last_name','profile_picture']
 
 
-# class BlogSerializers(serializers.ModelSerializer):
-#     author= SimpleAuthorSerializers(read_only=True)
-#     class Meta:
-#         model=Blog
-#         fields=['id','title','slug','author','content','category','featured_image','created_at','updated_at','published_date','is_draft']
-
 
 class BlogSerializers(serializers.ModelSerializer):
     author = SimpleAuthorSerializers(read_only=True)
-    category = serializers.StringRelatedField()
+    # category = serializers.StringRelatedField()
 
     class Meta:
         model = Blog

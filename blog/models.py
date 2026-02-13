@@ -21,7 +21,7 @@ class Blog(models.Model):
     CATEGORY=(
         ("Technology","Technology"),
         ("Economy","Economy"),
-        ("Busniess","Busniess"),
+        ("Business","Business"),
         ("Sports","Sports"),
         ("Lifestyle","Lifestyle"),
                
@@ -36,7 +36,7 @@ class Blog(models.Model):
     created_at=models.DateTimeField(auto_now_add=True)
     updated_at=models.DateTimeField(auto_now=True)
     published_date=models.DateTimeField(blank=True,null=True)
-    is_draft=models.BooleanField(default=True)
+    is_draft=models.BooleanField(default=False)
 
 
     class Meta:
