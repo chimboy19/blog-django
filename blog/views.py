@@ -56,6 +56,7 @@ def blog_list(request):
 
 
 @api_view(["GET"])
+@permission_classes([AllowAny])
 def blog_details(request, slug):
     blog=get_object_or_404(Blog,slug=slug)
     serializer=BlogSerializers(blog)
